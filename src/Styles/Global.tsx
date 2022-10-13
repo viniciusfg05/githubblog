@@ -6,6 +6,8 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     /* font-size: 87.5%; */
+    text-decoration: none;
+    list-style-type: none;
   }
 
   :focus {
@@ -24,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
 
     -webkit-font-smoothing: antialiased;
   }
+
 
   @media (max-width: 600px) {
     * {
