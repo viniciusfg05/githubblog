@@ -5,14 +5,11 @@ import { IssuesContainerStyled, IssuesContentStyled, IssuesHeaderStyled, MainIss
 export function MainIssues() {
     const { issues } = useContext(GitBlogContext)
 
+    // const data = {
+        
+    // }
 
-    console.log(issues)
-
-    const response = issues.map(issue => {
-        return issue.body
-    })
-
-    console.log(response)
+    // console.log(issues)
 
 
     return (
