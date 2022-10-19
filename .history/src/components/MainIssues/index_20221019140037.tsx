@@ -31,7 +31,6 @@ export function MainIssues() {
                 locale: ptBR
               })}
             </p>
-            <p></p>
           </IssuesHeaderStyled>
 
           <MainIssuesStyled>

@@ -35,6 +35,7 @@ export function Description() {
         <DescriptionContenteStyled>
                 <HeaderDescriptionStyled>
                     <img src="https://avatars.githubusercontent.com/u/68232658?v=4" />
+
                     <header>
                         <section>
                             <h1>{users?.name}</h1>

@@ -46,8 +46,6 @@ export function GitBlogProvider({ children }: GitBlogProviderProps) {
         .then(data => setIssues(data.items)) //console .log nos dados
     }
 
-    console.log(data)
-
     useEffect(() => {
         issuesfetch()
     }, [])
