@@ -4,7 +4,7 @@ export const HomeConteinerStyled = styled.div`
     margin-top: -7rem;
     `
 
-export const HomeContenteStyled = styled.div`
+export const DescriptionContenteStyled = styled.div`
     width: 54rem;
     height: 13.25rem;
     margin: 0 auto;
