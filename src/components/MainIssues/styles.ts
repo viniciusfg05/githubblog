@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const IssuesContainerStyled = styled.section`
@@ -8,7 +9,8 @@ export const IssuesContainerStyled = styled.section`
     gap: 2rem;
     margin-top: 3rem;
 `
-export const IssuesContentStyled = styled.section`
+
+export const IssuesContentStyled = styled(NavLink)`
     background: ${props => props.theme["base-post"]};
     padding: 2rem;
     border-radius: 10px;
@@ -19,11 +21,14 @@ export const IssuesHeaderStyled = styled.div`
     justify-content: space-between;
     gap: 1rem;
 
+        
+        
     h3 {
+        color: ${props => props.theme["base-title"]};
         font-size: 1.25rem;
         font-weight: 700;
     }
-
+    
     p { 
         min-width: 3.3125rem;
         color: ${props => props.theme["base-span"]};

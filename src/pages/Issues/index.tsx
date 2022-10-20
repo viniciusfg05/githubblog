@@ -1,12 +1,10 @@
 import { DescriptionContenteStyled, HeaderDescriptionStyled, IssuesContainerStyled } from "./styles";
 import IconGithubArrow from '../../assets/arrow-up-right-from-square-solid.svg'
 import GithubBrands from '../../assets/github-brands.svg'
-import buildingSolid from '../../assets/building-solid.svg'
-import userGroupSolid from '../../assets/user-group-solid.svg'
 import { useContext, useEffect, useState } from 'react'
 import { CalendarBlank, CaretLeft, ChatCircle } from "phosphor-react";
-import { NavLink } from "react-router-dom";
-import { GitBlogContext } from "../../context/ContextApi";
+import { NavLink, useParams } from "react-router-dom";
+import { GitBlogContext, IssuesProps } from "../../context/ContextApi";
 
 interface UserProps {
   name: string;
@@ -17,22 +15,23 @@ interface UserProps {
   comments: number;
 }
 
+interface issuesParmsProps {
+  data: IssuesProps;
+}
+
 
 export function IssuesPost() {
+  const [issuesParms, setIssuesParms] = useState<any[]>([])
   const [users, setUsers] = useState<UserProps>()
   const { issues } = useContext(GitBlogContext)
+  
+  let { userId } = useParams();
 
-  const issuesData = issues.map(issue => {
-    const data = {
-      comments: issue.comments,
-      created_at: issue.created_at,
-    }
 
-    return data
-  })
-
-  console.log(issuesData)
-
+  const filterIssuesForId = async () => {
+    const data = issues.filter(issue => issue.id === Number(userId))
+    setIssuesParms(data)
+  }
 
   const apitGit = async () => {
     fetch('https://api.github.com/users/viniciusfg05') //rota possivelmente criariamos no futuro
@@ -42,6 +41,7 @@ export function IssuesPost() {
 
   useEffect(() => {
     apitGit()
+    filterIssuesForId()
   }, [])
 
   return (
@@ -83,6 +83,12 @@ export function IssuesPost() {
           </header>
         </HeaderDescriptionStyled>
       </DescriptionContenteStyled>
+
+      {issuesParms.map(issuesParms => (
+
+        <p>{issuesParms.body}</p>
+      ))}
+
     </IssuesContainerStyled>
   )
 }

@@ -6,10 +6,11 @@ interface GitBlogProviderProps {
     children: ReactNode; // qualquer html valido
 }
 
-interface IssuesProps {
-    // body: string
-    // created_at: string;
-    // title: string;
+export interface IssuesProps {
+    id: number;
+    body: string
+    created_at: string;
+    title: string;
 }
 
 interface DataIssuesProps {
@@ -17,7 +18,7 @@ interface DataIssuesProps {
 }
 
 interface GitBlogPropsTypes {
-    issues: any;
+    issues: IssuesProps[];
 }
 
 export const GitBlogContext = createContext({} as GitBlogPropsTypes);
