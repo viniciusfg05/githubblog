@@ -26,9 +26,9 @@ interface issuesParmsProps {
 
 export function IssuesPost() {
   const [issuesParms, setIssuesParms] = useState<any[]>([])
+  console.log(issuesParms)
   const [users, setUsers] = useState<UserProps>()
   const { issues } = useContext(GitBlogContext)
-  console.log(issues)
 
   let { userId } = useParams();
 
@@ -48,6 +48,10 @@ export function IssuesPost() {
     apitGit()
     filterIssuesForId()
   }, [])
+
+  var converter = new showdown.Converter
+  var text = '# hello, markdown!';
+  var html = converter.makeHtml(text);
 
 
   return (

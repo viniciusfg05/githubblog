@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { GitBlogContext } from '../../context/ContextApi'
 import { dateFormatter } from '../Ultils/Formatted'
 import { formatDistanceToNow } from 'date-fns'
-import ReactMarkdown from 'react-markdown'
 import ptBR from 'date-fns/locale/pt-BR'
 import {
   IssuesContainerStyled,
@@ -14,10 +13,16 @@ import {
 export function MainIssues() {
   const { issues } = useContext(GitBlogContext)
 
+  console.log(issues)
+
+  const response = issues.map(issue => {
+    return issue.body
+  })
+
   return (
     <IssuesContainerStyled>
       {issues.map(issues => (
-        <IssuesContentStyled to={`/issues/${issues.id}`}>  
+        <IssuesContentStyled >  
           <IssuesHeaderStyled>
             <h3>{issues.title}</h3>
             <p>

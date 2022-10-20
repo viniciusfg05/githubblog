@@ -29,10 +29,9 @@ export function MainIssues() {
           </IssuesHeaderStyled>
 
           <MainIssuesStyled>
-            <p>
-              {issues.body.slice(0, 200)}
-              {'...'}
-            </p>
+          <ReactMarkdown children={
+                            issues.body.slice(0, 200)
+                        } />
           </MainIssuesStyled>
         </IssuesContentStyled>
       ))}

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
 
 export const IssuesContainerStyled = styled.div`
 
@@ -69,25 +68,5 @@ export const HeaderDescriptionStyled = styled.div`
 `
  
 export const MainIssusContentStyled = styled.div`
-    width: 54rem;
-    margin: 0 auto;
-    padding: 0 2rem;
-    line-height: 1.25rem;
-    font-size: 1rem;
-    margin-top: 2rem;
-    color: ${props => props.theme["base-text"]};
-
-
-
-    p {
-        margin-bottom: 2rem;
-    }
-
-    a {
-        color: ${props => props.theme["blue"]};
-    }
-`
-
-export const MainBodyStyled = styled(ReactMarkdown)`
 
 `

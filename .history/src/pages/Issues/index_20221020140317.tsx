@@ -1,10 +1,11 @@
-import { DescriptionContenteStyled, HeaderDescriptionStyled, IssuesContainerStyled, MainBodyStyled, MainIssusContentStyled } from "./styles";
+import { DescriptionContenteStyled, HeaderDescriptionStyled, IssuesContainerStyled, MainIssusContentStyled } from "./styles";
 import IconGithubArrow from '../../assets/arrow-up-right-from-square-solid.svg'
 import GithubBrands from '../../assets/github-brands.svg'
 import { useContext, useEffect, useState } from 'react'
 import { CalendarBlank, CaretLeft, ChatCircle } from "phosphor-react";
 import { NavLink, useParams } from "react-router-dom";
 import { GitBlogContext, IssuesProps } from "../../context/ContextApi";
+import ReactMarkdown from "react-markdown";
 import showdown from "showdown"
 import remarkGfm from 'remark-gfm'
 import { formatDistanceToNow } from "date-fns";
@@ -26,9 +27,9 @@ interface issuesParmsProps {
 
 export function IssuesPost() {
   const [issuesParms, setIssuesParms] = useState<any[]>([])
+  console.log(issuesParms)
   const [users, setUsers] = useState<UserProps>()
   const { issues } = useContext(GitBlogContext)
-  console.log(issues)
 
   let { userId } = useParams();
 
@@ -48,6 +49,10 @@ export function IssuesPost() {
     apitGit()
     filterIssuesForId()
   }, [])
+
+  var converter = new showdown.Converter
+  var text = '# hello, markdown!';
+  var html = converter.makeHtml(text);
 
 
   return (
@@ -100,8 +105,8 @@ export function IssuesPost() {
 
           <MainIssusContentStyled>
 
-            <MainBodyStyled children={issuesParms.body} remarkPlugins={[remarkGfm]} /> 
           </MainIssusContentStyled>
+          <ReactMarkdown children={issuesParms.body} remarkPlugins={[remarkGfm]} />
         </>
       ))}
 

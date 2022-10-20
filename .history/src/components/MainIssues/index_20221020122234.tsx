@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { GitBlogContext } from '../../context/ContextApi'
 import { dateFormatter } from '../Ultils/Formatted'
 import { formatDistanceToNow } from 'date-fns'
-import ReactMarkdown from 'react-markdown'
 import ptBR from 'date-fns/locale/pt-BR'
 import {
   IssuesContainerStyled,

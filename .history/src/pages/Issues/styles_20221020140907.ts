@@ -75,16 +75,11 @@ export const MainIssusContentStyled = styled.div`
     line-height: 1.25rem;
     font-size: 1rem;
     margin-top: 2rem;
-    color: ${props => props.theme["base-text"]};
-
 
 
     p {
-        margin-bottom: 2rem;
-    }
+    margin-bottom: 2rem;
 
-    a {
-        color: ${props => props.theme["blue"]};
     }
 `
 

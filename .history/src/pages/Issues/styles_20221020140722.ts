@@ -71,20 +71,12 @@ export const HeaderDescriptionStyled = styled.div`
 export const MainIssusContentStyled = styled.div`
     width: 54rem;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 2rem;
     line-height: 1.25rem;
     font-size: 1rem;
-    margin-top: 2rem;
-    color: ${props => props.theme["base-text"]};
-
-
 
     p {
-        margin-bottom: 2rem;
-    }
-
-    a {
-        color: ${props => props.theme["blue"]};
+        margin-top: 2rem;
     }
 `
 

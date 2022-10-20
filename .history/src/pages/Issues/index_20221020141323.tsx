@@ -28,7 +28,6 @@ export function IssuesPost() {
   const [issuesParms, setIssuesParms] = useState<any[]>([])
   const [users, setUsers] = useState<UserProps>()
   const { issues } = useContext(GitBlogContext)
-  console.log(issues)
 
   let { userId } = useParams();
 
