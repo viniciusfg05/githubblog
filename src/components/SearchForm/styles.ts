@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SearchContainerStyled = styled.div`
+export const SearchContainerStyled = styled.form`
     width: 54rem;
     margin: 4.5rem auto 0 auto;
     font-family: "Nunito", sans-serif;
