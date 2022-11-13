@@ -12,30 +12,30 @@ import {
 } from './styles'
 
 export function MainIssues() {
-  const { issues } = useContext(GitBlogContext)
+  const { issues, queryIssues } = useContext(GitBlogContext)
+    return (
+      <IssuesContainerStyled>
 
-  return (
-    <IssuesContainerStyled>
-      {issues.map(issues => (
-        <IssuesContentStyled to={`/issues/${issues.id}`}>  
-          <IssuesHeaderStyled>
-            <h3>{issues.title}</h3>
-            <p>
-              {formatDistanceToNow(new Date(issues.created_at), {
-                addSuffix: true,
-                locale: ptBR
-              })}
-            </p>
-          </IssuesHeaderStyled>
+        {issues.map(issues => (
+          <IssuesContentStyled to={`/issues/${issues.id}`} key={issues.id}>
+            <IssuesHeaderStyled>
+              <h3>{issues.title}</h3>
+              <p>
+                {formatDistanceToNow(new Date(issues.created_at), {
+                  addSuffix: true,
+                  locale: ptBR
+                })}
+              </p>
+            </IssuesHeaderStyled>
 
-          <MainIssuesStyled>
-            <p>
-              {issues.body.slice(0, 200)}
-              {'...'}
-            </p>
-          </MainIssuesStyled>
-        </IssuesContentStyled>
-      ))}
-    </IssuesContainerStyled>
-  )
-}
+            <MainIssuesStyled>
+              <p>
+                {issues.body.slice(0, 200)}
+                {'...'}
+              </p>
+            </MainIssuesStyled>
+          </IssuesContentStyled>
+        ))}
+      </IssuesContainerStyled>
+    )
+  }

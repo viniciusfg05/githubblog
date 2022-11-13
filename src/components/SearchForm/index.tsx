@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as zod from "zod"
 import { useContext } from "react";
 import { GitBlogContext } from "../../context/ContextApi";
+import axios from "axios";
 
 const serchFormSchema = zod.object({
     query: zod.string()
@@ -12,26 +13,23 @@ const serchFormSchema = zod.object({
 type SerchFormInput = zod.infer<typeof serchFormSchema>
 
 export function SearchForm() {
-    const {  register, handleSubmit, formState: { isSubmitted }} = useForm<SerchFormInput>({
+    const {  register, handleSubmit, reset, formState: { isSubmitted }} = useForm<SerchFormInput>({
         resolver: zodResolver(serchFormSchema)
     })
 
-    const { issues } = useContext(GitBlogContext)
+    const { queryIssuesFunc, issues } = useContext(GitBlogContext)
 
 
     async function handleSearchIssues(data: SerchFormInput) {
-        console.log(data)
+        queryIssuesFunc(data.query)
+        reset()
     }
-
-    // const res = issues.filter(issues => issues.body !== "prin")
-    // console.log(res)
-    // // console.log(issues)
 
     return (
         <SearchContainerStyled onSubmit={handleSubmit(handleSearchIssues)}>
             <SearchHeaderStyled>
                 <h2>Publicações</h2>
-                <p>6 publicações</p>
+                <p>{issues.length} publicações</p>
             </SearchHeaderStyled>
 
             <input type="text" placeholder="Buscar conteúdo" {...register('query')}/>

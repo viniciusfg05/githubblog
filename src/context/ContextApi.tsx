@@ -19,26 +19,24 @@ interface DataIssuesProps {
 
 interface GitBlogPropsTypes {
     issues: IssuesProps[];
+    queryIssues: IssuesProps;
+    queryIssuesFunc: (data: string) => void;
 }
 
 export const GitBlogContext = createContext({} as GitBlogPropsTypes);
 
 
 export function GitBlogProvider({ children }: GitBlogProviderProps) {
-
-    const [ responseIgnite22Timer, setResponseIgnite22Timer ] = useState([])
-    const [ responseGithubblog, setResponseGithubblog ] = useState([])
     
     const [ issues, setIssues ] = useState<any[]>([])
-    
+    const [ queryIssues, setQueryIssues ] = useState<any>([])
+
     const issuesfetch = async () => {
 
         const responseIgnite22Timer1 = await axios.get('https://api.github.com/repos/viniciusfg05/ignite22-timer/issues/1')
         const responseIgnite22Timer2 = await axios.get('https://api.github.com/repos/viniciusfg05/ignite22-timer/issues/2')
         const responseGithubblog = await axios.get('https://api.github.com/repos/viniciusfg05/githubblog/issues/1')
 
-        const buscar = await axios.get(`https://api.github.com/search/issues?q=${'Boas'}%20repo:${"viniciusfg05"}/${"githubblog"}`)
-        console.log(buscar)
         
         const dataIssues = [
             responseIgnite22Timer1.data,
@@ -47,16 +45,21 @@ export function GitBlogProvider({ children }: GitBlogProviderProps) {
         ]
 
         setIssues(dataIssues)
-        // console.log(responseGithubblog.data)
     }
 
+    async function queryIssuesFunc(data: string) {
+        const blog = await axios.get(`https://api.github.com/search/issues?q=${data}%20repo:${"viniciusfg05"}/${"githubblog"}`)
+        const timer = await axios.get(`https://api.github.com/search/issues?q=${data}%20repo:${"viniciusfg05"}/${'ignite22-timer'}`)
+
+        setIssues(timer.data.items)
+    }
 
     useEffect(() => {
         issuesfetch()
     }, [])
 
     return (
-        <GitBlogContext.Provider value={{ issues }}>
+        <GitBlogContext.Provider value={{ issues, queryIssues, queryIssuesFunc }}>
             {children}
         </GitBlogContext.Provider>
     )
